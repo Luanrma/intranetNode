@@ -38,6 +38,11 @@ echo json_encode($usuarios);*/
 //echo json_encode($search);
 
 //Carrega um usuário usando email e senha
+//$user = new User();
+//$user->login("teste@hotmail.com", "123" );
+//echo $user;
+
 $user = new User();
-$user->login("teste@hotmail.com", "123" );
-echo $user;
+$user->insert("Luan Raisson Miano de Aquino", "luanrma@gmail.com", "luanrma", "123", "TESTE");
+//$user->loadById(1);
+//$user->update("Luan Miano Aquino", "luanrma@gmail.com", "luanrma", "123", "TESTE");

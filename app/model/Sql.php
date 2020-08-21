@@ -41,7 +41,14 @@ class Sql extends PDO {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    }   
+    }
+    
+    public function insert($rawQuery, $params = array()) {
+
+        $stmt = $this->query($rawQuery, $params);
+
+        return $stmt->execute();
+    }
 
     public function query($rawQuery, $params = array()) {
 
@@ -70,21 +77,6 @@ class Sql extends PDO {
 
     }
 
-    public function createUser() {
-       // include_once 'conection.php';
-        $stmt = $this->conn->prepare("INSERT INTO users (USER, PASS, EMAIL) "
-                . "VALUES(:name, :pass, :email)");
-        
-        $stmt->bindParam(":name", $this->getName());
-        $stmt->bindParam(":pass", $this->getPass());
-        $stmt->bindParam(":email", $this->getEmail());
-            
-        $stmt->execute();
-        //header('Location:../home.php');
-        exit();
-        
-    }
-
     public function createTopic() {
        // include_once 'conection.php';
         $stmt = $this->conn->prepare("INSERT INTO topics (TITLE, QUESTION) "
@@ -99,16 +91,6 @@ class Sql extends PDO {
         
     }
     
-    public function showUsers() {
-        //include_once 'conection.php';
-        $stmt = $this->conn->prepare("SELECT * FROM users");
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $json = json_encode($results);
-        return($json);
-        //file_put_contents('../assets/js/data.json', $json);
-    }
-
     public function showTopics() {
         include_once 'conection.php';
         $stmt = $this->conn->prepare("SELECT * FROM topics");
