@@ -1,0 +1,1 @@
+let createTopic = new Create('#userData', 'http://localhost/forum/controller/createTopic.php');

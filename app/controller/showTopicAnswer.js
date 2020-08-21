@@ -1,0 +1,2 @@
+//let list = new List('#topic-answers','#topic-master-list', 'http://localhost/forum/controller/showTopicsAnswers.php', 3);
+//let list = new List('#topic-answers','#topic-master-list', 'http://localhost/forum/controller/showTopicsAnswers.php');

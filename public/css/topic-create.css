@@ -1,0 +1,39 @@
+.topic-create {
+    background: var(--color-box-base);
+    border: 2px solid var(--color-text-base);
+    border-radius: 15pt;
+    padding: 2rem;
+    margin-top: 2rem;
+    font-family: Poppins;
+}
+
+.topic-create header {
+    margin-top: 1rem;
+    color: var(--color-text-title);
+    font-family: Archivo;
+    border-bottom: 2px solid;
+    display: flex;
+    justify-items: center;
+    justify-content: space-between;
+}
+
+.topic-create header h3 {
+    margin-top: 1rem;
+    margin-right: 2rem;
+    color: var(--color-text-title);
+    font-family: Archivo;
+}
+
+.topic-create small {
+    margin-top: 2rem;
+}
+
+.topic-create p {
+    margin-top: 1rem;
+    border: 0.5px solid var(--color-text-complement);
+    padding: 1rem;
+    background: var(--color-box-base);
+    font: 1.2rem Archivo;
+}
+
+
