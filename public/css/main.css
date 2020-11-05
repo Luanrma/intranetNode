@@ -18,7 +18,7 @@
     --color-box-base: #fcfcfc;
     --color-base-topic: #d3d3d3;
     --color-box-footer: #FAFAFC;
-    --color-PowderBlue: #b9b9b9;
+    --color-PowderBlue: #EBEEF3;
 }
 
 body {
@@ -26,5 +26,6 @@ body {
     width: 100%;
     font-family: Poppins;
     font-size: 150%;
+    background: #3C3C3C ;
     
 }

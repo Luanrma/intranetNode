@@ -24,9 +24,9 @@
 
 .topics {
     margin-top: 1.5rem;
-    background:var(--color-box-base);
     padding: 1rem;
     border-radius: 20pt;
+    background: #6C6C6C;
 }
 
 .topics a {
@@ -49,6 +49,11 @@
     font-family: Poppins;
     margin-bottom: 1.5rem;
     color: var(--color-primary-dark);
+}
+
+.topic-item p {
+    margin-top: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .topic-item small {

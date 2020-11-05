@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+}
+
+.container-intranet {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;    
+}
+
+.container-intranet > div {
+    flex: 1 1 400px;
+    margin: 0.5rem;
+}
+
+.container-intranet a {
+    text-decoration: none;
+}
+
+.intranet-forum {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 20rem;
+    width: 100vw;
+    max-width: 800px;
+   
+    background:var(--color-primary-darker);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.intranet-forum:hover {
+    background:var(--color-primary-dark);
+}
+
+.intranet-forum p {
+    color: white;
+    font-size: 2rem; 
+}

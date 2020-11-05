@@ -1,0 +1,26 @@
+{
+  "name": "intranet",
+  "version": "1.0.0",
+  "description": "Projeto de uma Intranet com uma carinha de Forum.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luanrma/Intranet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luanrma/Intranet/issues"
+  },
+  "homepage": "https://github.com/Luanrma/Intranet#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6",
+    "nunjucks": "^3.2.2",
+    "sqlite-async": "^1.1.0"
+  }
+}
