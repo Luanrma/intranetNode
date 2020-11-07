@@ -32,8 +32,8 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div id="topic-master-list" class="col-sm-12">
+        <div class="mt-5 row">
+            <div class="topic-master-list col-sm-12">
                 {%for topic in topicSelected %}
                 <article class="topic">
                     <header>
@@ -45,31 +45,49 @@
                 {%endfor%}
             </div>
         </div>
-        <div class="row topic-page">
-            
+        
+        <div class="topic-page">  
+                 
             {%for answers in answerSelected %}
-            <div class="col-sm-12">
-                <article class="topic-answers">
-                    <header>
-                        <h5>Zé Ramalho</h5>
-                        <small>{{answers.data_create_answer}}</small>
             
-                    </header>
-                    <p>{{answers.answer}}</p>
-                </article>
-            </div>
+                <div class="row topic-answers">
+                    <div class="col-sm-1">
+                        {{answers.id_answer}} 
+                    </div>
+                    <div class="col-sm-10">
+                        <article>
+                            <header>
+                                <h5>{{answers.id_answer}} - Zé Ramalho</h5>
+                                <small>{{answers.data_create_answer}}</small>
+                            </header>
+                            <p>{{answers.answer}}</p>
+                        </article>
+                    </div>
+                    <div class="col-sm-1 answer-edit">
+                        <a>Editar</a>
+                    </div>
+                </div>  
+                
             {%endfor%}
 
         </div>
+       
+        <div class="mt-3 row justify-content-center">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/topic-answers?move=back&pagination={{page}}&idTopic={{idTopic}}">Back</a></li>
+                <li class="page-item"><a class="page-link" href="/topic-answers?move=next&pagination={{page}}&idTopic={{idTopic}}">Next</a></li>
+            </ul>   
+        </div>
+
         <div class="row answers">
             <div class="col-sm-12">
+                <div id="msg" class="text-center"></div>
 
-                <form id="answers" action="createAnswer" method="post">
-                    <div id="msg" class="text-center"></div>
+                <form id="userData" action="createAnswer" method="post" onsubmit="saveTopic(event)">
                     <div class="form-group">
-                        <label for="inputAnswer">Resposta</label>
-                        <textarea class="form-control body-answer" placeholder="Publique sua resposta" name="inputAnswer" rows="5"></textarea>
-                        <input type="hidden" class="idTopic" name="inputIdTopic" value="{{idTopic}}">
+                        <label for="answer">Resposta</label>
+                        <textarea class="form-control body-answer inputData" placeholder="Publique sua resposta" name="answer" rows="5"></textarea>
+                        <input type="hidden" class="idTopic inputData" name="idTopic" value="{{idTopic}}">
                         <button type="submit" class="btn-lg btn-primary my-3">Enviar</button>
                     </div>
                 </form>
@@ -78,8 +96,7 @@
         </div>
     </div>
 
-    <!--
-    <script src="../controller/showTopicAnswer.js"></script>-->
+    <script src="/scripts/create.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -1,10 +1,9 @@
-.container {
-    background: var(--color-PowderBlue);
-}
-.topic-page {
-    margin-top: 2rem;
-    padding: 1rem;
+
+.topic-master-list {
     border-radius: 20pt;
+    background:#A4A3A3;
+    padding-bottom: 2rem;
+    border: 0.5px solid var(--color-text-complement);
 }
 
 .topic {
@@ -13,6 +12,12 @@
     border-radius: 15pt;
     padding: 2rem;
     margin-top: 2rem;
+}
+
+.topic-page {
+    padding: 1rem;
+    border-radius: 20pt;
+    background: #F5F5F5;
 }
 
 .topic header {
@@ -38,13 +43,13 @@
 
 .topic p {
     margin-top: 1rem;
-    border: 0.5px solid var(--color-text-complement);
     padding: 1rem;
     background: var(--color-box-base);
     font: 1.2rem Archivo;
 }
 
 .topic-answers {
+    display: flex;
     border-bottom: 3.5px solid var(--color-text-complement);
     padding: 1.5rem;
     margin: 1rem 0 1rem;
@@ -66,7 +71,17 @@
     font: 1.2rem Archivo;
 }
 
+.answer-edit {
+    display: flex;
+
+}
+
+.answer-edit a{
+
+    justify-items: center;
+    justify-content: space-between;
+}
+
 .answers {
     color: var(--color-text-title);
-    padding: 2rem;
 }

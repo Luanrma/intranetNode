@@ -6,6 +6,7 @@ const {
     home,
     topic_answers,
     topic_create,
+    search_topics,
     topics,
     createTopic,
     createAnswer
@@ -29,6 +30,7 @@ server
 .get('/topics', topics)
 .get('/topic-answers', topic_answers)
 .get('/topic-create', topic_create)
+.get('/search-topics', search_topics)
 //.post('/createTopic', createTopic)
 .post('/topic-create', createTopic)
 .post('/createAnswer', createAnswer)

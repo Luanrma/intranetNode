@@ -9,9 +9,7 @@ function home(req, res) {
 async function topic_answers(req, res) {
 
     const idTopic = req.query.idTopic
-    const idUser = req.query.idUser
-
-    //console.log(idTopic, idUser)
+    const idUser  = req.query.idUser
 
     const db = await Database;
     const topicSelected = await db.all(`
@@ -19,25 +17,35 @@ async function topic_answers(req, res) {
         WHERE id_topic = ${idTopic} 
     `)
 
-    //onsole.log(topicSelected)
-
     topicSelected.map((topic) => {
-        //console.log(topic)
         topic = topicSelected; 
      })
 
+    const limitOfPages = 10
+    const numberOfPages = 10
+
+    let prepareMoveTo = {
+        move: req.query.move,
+        page: req.query.pagination,
+        numberOfPages
+    }
+
+    let moveTo = utils.pagination({prepareMoveTo})
+    let offset = moveTo.offset
+    let page   = moveTo.page
+
     const answerSelected = await db.all(`
-        SELECT * FROM answers WHERE fk_id_topic = ${idTopic}
+        SELECT * FROM answers 
+        WHERE fk_id_topic = ${idTopic} 
+        LIMIT ${limitOfPages}
+        OFFSET ${offset}
     `)
 
-    //console.log(answerSelected)
-
     answerSelected.map((answers) => {
-        //console.log(answers)
         answers = answerSelected; 
     })
 
-    return res.render('topic-answers.html', {topicSelected, answerSelected, idTopic})
+    return res.render('topic-answers.html', {topicSelected, answerSelected, idTopic, page})
 } 
 
 function topic_create(req, res) {
@@ -46,24 +54,49 @@ function topic_create(req, res) {
 
 async function topics(req, res) {
 
-    let offSet = req.query.pagination
-    
-    if (typeof offSet === 'undefined') {  
-        offSet = 0     
+    const limitOfPages = 5
+    const numberOfPages = 5
+
+    let prepareMoveTo = {
+        move: req.query.move,
+        page: req.query.pagination,
+        numberOfPages
     }
 
+    let moveTo = utils.pagination({prepareMoveTo})
+    let offset = moveTo.offset
+    let page   = moveTo.page
+
     const db = await Database;
-    const selecteds = await db.all(`SELECT * FROM topics LIMIT 5 OFFSET ${offSet}`)
+    const selecteds = await db.all(`SELECT * FROM topics LIMIT ${limitOfPages} OFFSET ${offset}`)
 
-    //console.log(selecteds)
-
-    selecteds.map((selected) => {
-       // console.log(selected)
+    await selecteds.map((selected) => {
+       
         selected = selecteds; 
      })
 
-    return res.render('topics.html', {selecteds})
+    return res.render(`topics.html`, {selecteds, page})
 } 
+
+async function search_topics(req, res) {
+
+    let search = req.query.search
+
+    const db = await Database;
+    const selecteds = await db.all(`
+        SELECT * FROM topics
+        WHERE title
+        LIKE '%${search}%'
+    `)
+
+    await selecteds.map((selected) => {
+       
+        selected = selecteds; 
+     })
+
+    return res.render(`topics.html`, {selecteds})
+
+}
 
 async function createTopic(req, res) {
     
@@ -75,16 +108,16 @@ async function createTopic(req, res) {
     }
 
     try {
-        //inserir dados na tabela
-        const db = await Database
         const createTopics = {
             id: 1,
-            title: fields.inputTopicTitle,
-            text: fields.inputTopicText,
+            title: fields.title,
+            text: fields.text,
             answers_count: 5,
             dataCreate: utils.getCreateDate()
         }
 
+        //inserir dados na tabela
+        const db = await Database
         await create.topic(db, {createTopics});
     
         return res.redirect('/topics')
@@ -101,7 +134,7 @@ async function createAnswer(req, res) {
    // console.log(req.body)
     const fields = req.body
 
-    const idTopic = fields.inputIdTopic
+    const idTopic = fields.idTopic
     const idUser = 1
 
     //validar se todos os campos estão preenchidos
@@ -110,17 +143,16 @@ async function createAnswer(req, res) {
     }
 
     try {
-        //inserir dados na tabela
-        const db = await Database
-
         const createAnswers = {
             idUser: 1,
-            idTopic: fields.inputIdTopic,
-            text: fields.inputAnswer,
+            idTopic: fields.idTopic,
+            text: fields.answer,
             likes_count: 0,
             dataCreate: utils.getCreateDate()
         }
 
+        //inserir dados na tabela
+        const db = await Database
         await create.answer(db, {createAnswers});
         
         return res.redirect(`/topic-answers?idTopic=${idTopic}&idUser=${idUser}`)
@@ -137,6 +169,7 @@ module.exports = {
     topic_answers,
     topic_create,
     topics,
+    search_topics,
     createTopic,
     createAnswer
 }

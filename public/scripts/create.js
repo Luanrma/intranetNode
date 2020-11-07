@@ -5,8 +5,6 @@ function saveTopic(event) {
 	const form = document.querySelector('#userData')
 	const msg = document.querySelector("#msg")
 
-	console.log("evento: ", event)
-
 	let user    = {};
 	
 	[...form.getElementsByClassName("inputData")].forEach(field => {
@@ -27,6 +25,4 @@ function saveTopic(event) {
 		}
 	});
 }
-
-
 

@@ -1,5 +1,4 @@
 async function topic(db, {createTopics}) {
-    //console.log(title)
     await db.run(`
         INSERT INTO topics (
             topic_id_user,
@@ -30,10 +29,11 @@ async function answer(db, {createAnswers}) {
                 ${createAnswers.idTopic},
                 "${createAnswers.text}",
                 ${createAnswers.likes_count},
-                "${createAnswers.dataCreate},"
+                "${createAnswers.dataCreate}"
             );
         `);
     }
+
 module.exports = {
     topic,
     answer
